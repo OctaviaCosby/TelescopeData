@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.stats import norm
 
 #assign the daata to a new variable
 data = pd.read_csv("telescope_data.csv")
@@ -65,3 +66,27 @@ plt.xlabel("Attribute 1")
 plt.ylabel("Attribute 2")
 plt.grid(True)
 plt.show()
+
+#find mean and std of attribute 1
+mean_attribute1 = np.mean(attribute1)
+print("Mean of Attribute 1: ", mean_attribute1)
+
+std_attribute1 = np.std(attribute1)
+print(f"Standard Deviation of Attribute 1: ", std_attribute1)
+
+#create a span of values for Attribute 1 to range from
+x_values = np.linspace(min(attribute1), max(attribute1), 1000)
+print(f"X Values: {x_values}")
+
+#calculate the prob density func using normal distribution
+pdf_values = norm.pdf(x_values, mean_attribute1, std_attribute1)
+print(f"Probality Density Function Values: {pdf_values}")
+
+#plot the probability density function
+plt.plot(x_values, pdf_values, label=f'Normal PDF ($\mu$={mean_attribute1:.2f}, $\sigma$={std_attribute1:.2f})')
+plt.title("Probablity Density Function fo Attribute 1")
+plt.xlabel("Attribute 1")
+plt.ylabel("Density")
+plt.grid(True)
+plt.show()
+
