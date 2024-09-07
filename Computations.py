@@ -18,11 +18,14 @@ train1 = train.to_numpy()
 print(train1)
 
 #compute the multivariate mean vector
-mean_vector = np.mean(train1)
+mean_vector = np.mean(train1, axis=0)
 print(f"Multivatiate Mean Vectors: {mean_vector}")
 
-#create a variable to center the data
-centered_func = lambda x: x-x.mean()
+#create a variable to center the data then calculate the centered data
+centered_data = train1 - mean_vector
+print(f"Centered Data: \n{centered_data}")
 
-centered_data = centered_func(train1)
-print(f"Centered Data: {centered_data}")
+#calculate the sample covariance matrix as inner product
+n = centered_data.shape[0] #calculate the number of rows
+samp_cov_inner = np.dot(centered_data.T, centered_data) /(n - 1)
+print(f"Sample Covariance Matrix (Inner Product): {samp_cov_inner}")
