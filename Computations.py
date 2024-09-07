@@ -20,3 +20,9 @@ print(train1)
 #compute the multivariate mean vector
 mean_vector = np.mean(train1)
 print(f"Multivatiate Mean Vectors: {mean_vector}")
+
+#create a variable to center the data
+centered_func = lambda x: x-x.mean()
+
+centered_data = centered_func(train1)
+print(f"Centered Data: {centered_data}")
