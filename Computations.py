@@ -19,7 +19,7 @@ print(train1)
 
 #compute the multivariate mean vector
 mean_vector = np.mean(train1, axis=0)
-print(f"Multivatiate Mean Vectors: {mean_vector}")
+print(f"Multivatiate Mean Vectors: \n{mean_vector}")
 
 #create a variable to center the data then calculate the centered data
 centered_data = train1 - mean_vector
@@ -28,4 +28,17 @@ print(f"Centered Data: \n{centered_data}")
 #calculate the sample covariance matrix as inner product
 n = centered_data.shape[0] #calculate the number of rows
 samp_cov_inner = np.dot(centered_data.T, centered_data) /(n - 1)
-print(f"Sample Covariance Matrix (Inner Product): {samp_cov_inner}")
+print(f"Sample Covariance Matrix (Inner Product): \n{samp_cov_inner}")
+
+#calculate the sample covariance matrix as outer product
+#initializing the covariance matrix to zeros
+samp_cov_outer = np.zeros((centered_data.shape[1], centered_data.shape[1]))
+
+# Calculate the outer product for each centered data point and sum them
+for i in range(n):
+    outer_product = np.outer(centered_data[i], centered_data[i])
+    samp_cov_outer += outer_product
+
+# Normalize by (n-1) to get the sample covariance matrix
+samp_cov_outer /= (n - 1)
+print(f"Sample Covariance Matrix (Outer Product): \n{samp_cov_outer}")
