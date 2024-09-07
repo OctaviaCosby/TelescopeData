@@ -42,3 +42,26 @@ for i in range(n):
 # Normalize by (n-1) to get the sample covariance matrix
 samp_cov_outer /= (n - 1)
 print(f"Sample Covariance Matrix (Outer Product): \n{samp_cov_outer}")
+
+#create variables for Attribute 1 and Attribute 2
+attribute1 = centered_data[:,0]
+attribute2 = centered_data[:,1]
+
+#calculate the cosine angle between the vectors
+dot_product = np.dot(attribute1, attribute2)
+ang_attribute1 = np.linalg.norm(attribute1)
+ang_attribute2 = np.linalg.norm(attribute2)
+print(f"Attribute 1: {attribute1}")
+print(f"Attribute 2: {attribute2}")
+
+#correlation between Attribute 1 and Attribute 2
+cos_similarity = dot_product / (ang_attribute1 * ang_attribute2)
+print(f"Cosine of the Angle Between Attribute 1 and Attribute 2: {cos_similarity}")
+
+#plot the points
+plt.scatter(attribute1, attribute2)
+plt.title("Scatter Plot for Corrleation between Attribute 1 & Attribute 2")
+plt.xlabel("Attribute 1")
+plt.ylabel("Attribute 2")
+plt.grid(True)
+plt.show()
