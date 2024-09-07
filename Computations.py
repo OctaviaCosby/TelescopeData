@@ -17,3 +17,6 @@ print(train)
 train1 = train.to_numpy()
 print(train1)
 
+#compute the multivariate mean vector
+mean_vector = np.mean(train1)
+print(f"Multivatiate Mean Vectors: {mean_vector}")
