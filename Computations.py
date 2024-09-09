@@ -129,3 +129,19 @@ min_cov_indices = np.unravel_index(np.nanargmin(samp_cov_inner), samp_cov_inner.
 print(f"Covariance matrix: \n{samp_cov_inner}")
 print(f"Largest Covariance: Between Attribute {max_cov_indices[0] + 1} and Attribute {max_cov_indices[1] + 1} with covariance {max_cov}")
 print(f"Smallest Covariance: Between Attribute {min_cov_indices[0] + 1} and Attribute {min_cov_indices[1] + 1} with covariance {min_cov}")
+
+# assign Attribute 6 and Attribute 8 to variables (index 5 and 7 in 0-based indexing)
+attribute_6 = train1[:, 5]  # Attribute 6
+attribute_8 = train1[:, 7]  # Attribute 8
+
+# plot Attribute 6 vs Attribute 8 as a scatter plot with circle markers
+plt.scatter(attribute_6, attribute_8, marker='o', color='blue')
+
+# add title and labels to the plot
+plt.title('Attribute 6 vs Attribute 8')
+plt.xlabel('Attribute 6')
+plt.ylabel('Attribute 8')
+
+# display the plot
+plt.grid(True)
+plt.show()
