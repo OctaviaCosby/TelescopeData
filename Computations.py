@@ -21,6 +21,7 @@ print(train1)
 
 #compute the multivariate mean vector
 mean_vector = np.mean(train1, axis=0)
+train_df = pd.DataFrame(train1, columns=train.columns)
 print(f"Multivatiate Mean Vectors: \n{mean_vector}")
 
 #create a variable to center the data then calculate the centered data
@@ -141,7 +142,5 @@ plt.scatter(attribute_6, attribute_8, marker='o', color='blue')
 plt.title('Attribute 6 vs Attribute 8')
 plt.xlabel('Attribute 6')
 plt.ylabel('Attribute 8')
-
-# display the plot
 plt.grid(True)
 plt.show()
