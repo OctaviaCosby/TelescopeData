@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import norm
+import seaborn as sns
 
 #assign the daata to a new variable
 data = pd.read_csv("telescope_data.csv")
@@ -88,5 +89,13 @@ plt.title("Probablity Density Function fo Attribute 1")
 plt.xlabel("Attribute 1")
 plt.ylabel("Density")
 plt.grid(True)
+plt.show()
+
+# Choosing Attributes 1 and 2 for the pair plot
+pairplot_data = pd.DataFrame(train.iloc[:, [0, 1]], columns=['Attribute 1', 'Attribute 2'])
+
+# Create the pairplot using seaborn
+sns.pairplot(pairplot_data)
+plt.suptitle('Pairplot between Attribute 1 and Attribute 2', y=1.02)  # y adjusts the title position
 plt.show()
 
