@@ -91,11 +91,41 @@ plt.ylabel("Density")
 plt.grid(True)
 plt.show()
 
-# Choosing Attributes 1 and 2 for the pair plot
+# choosing Attributes 1 and 2 for the pair plot
 pairplot_data = pd.DataFrame(train.iloc[:, [0, 1]], columns=['Attribute 1', 'Attribute 2'])
 
-# Create the pairplot using seaborn
+# create the pairplot using seaborn
 sns.pairplot(pairplot_data)
 plt.suptitle('Pairplot between Attribute 1 and Attribute 2', y=1.02)  # y adjusts the title position
 plt.show()
 
+# variances are on the diagonal of the covariance matrix
+variances = np.diag(samp_cov_inner)
+
+# find the largest and smallest variances
+max_variance = np.max(variances)
+min_variance = np.min(variances)
+
+#find the index of the largest and smallest variances
+max_variance_index = np.argmax(variances)
+min_variance_index = np.argmin(variances)
+
+print(f"Variance of each attribute: {variances}")
+print(f"Largest Variance: Attribute {max_variance_index + 1} with variance {max_variance}")
+print(f"Smallest Variance: Attribute {min_variance_index + 1} with variance {min_variance}")
+
+# F\find the largest and smallest covariance (excluding the diagonal)
+# set the diagonal to a very small value (or infinity) so it doesn't affect finding min/max covariances
+np.fill_diagonal(samp_cov_inner, np.nan)
+
+# find the maximum and minimum covariance values
+max_cov = np.nanmax(samp_cov_inner)
+min_cov = np.nanmin(samp_cov_inner)
+
+#get the indices of the maximum and minimum covariance values
+max_cov_indices = np.unravel_index(np.nanargmax(samp_cov_inner), samp_cov_inner.shape)
+min_cov_indices = np.unravel_index(np.nanargmin(samp_cov_inner), samp_cov_inner.shape)
+
+print(f"Covariance matrix: \n{samp_cov_inner}")
+print(f"Largest Covariance: Between Attribute {max_cov_indices[0] + 1} and Attribute {max_cov_indices[1] + 1} with covariance {max_cov}")
+print(f"Smallest Covariance: Between Attribute {min_cov_indices[0] + 1} and Attribute {min_cov_indices[1] + 1} with covariance {min_cov}")
